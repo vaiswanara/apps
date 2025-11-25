@@ -475,21 +475,9 @@
       const dateStr = row.Date || formatDateISO(parseDateFlexible(row.Date));
       els.activeDate.textContent = dateStr;
       const frag = document.createDocumentFragment();
-      // Render single-line Panchanga summary (Date, Weekday, Tithi, Nakshatra & Pada)
+      // Panchanga summary line removed as requested.
       const summaryBody = document.getElementById('summaryBody');
-      if (summaryBody) {
-        const dmy = formatDateDMY(row.Date || dateStr);
-        const wd = row['Weekday'] || '';
-        const tithi = row['Tithi'] || '';
-        const nakPada = row['Nakshatra & Pada'] || '';
-        const parts = [];
-        if (dmy) parts.push(dmy);
-        if (wd) parts.push(wd);
-        if (tithi) parts.push(tithi);
-        if (nakPada) parts.push(nakPada);
-        const panchanga = parts.length ? ('Panchanga: ' + parts.join(', ')) : '';
-        summaryBody.innerHTML = '<tr><td colspan="5" class="value">' + escapeHtml(panchanga) + '</td></tr>';
-      }
+      if (summaryBody) { summaryBody.innerHTML = ''; }
   // Date is shown in the summary table; do not add a duplicate Date row here.
       const janmaIdx = RASHI_TO_INDEX[(els.janma?.value||'').toLowerCase()] || null;
       const order = (state.fieldsOrder && state.fieldsOrder.length ? state.fieldsOrder : Object.keys(row).filter(k => k !== 'Date'))
@@ -797,5 +785,3 @@
   </script>
 </body>
 </html>
-
-
